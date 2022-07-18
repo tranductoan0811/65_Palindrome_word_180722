@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- các từ vd đối xứng trong tiếng anh: rotor, redder, detartrated, radar, rotator, repaper, redivider -->
+    <h3 style="margin-left: 100px;">Kiểm tra từ đối xứng</h3>
+    <script>
+      function check_palidrome(char) {
+        var text = false;
+        var mid_index = ((char.length)/2);
+
+        if (char[0] === char[char.length-1]) {
+            for (let i = 1; i < mid_index; i++) {
+              if (char[i] = char[char.length-1-i]) {
+                text = char;
+              }
+            }
+        }
+        return text; 
+      }
+
+      function get_midchar(text) {
+        var length_num = text.length;
+        var mid_index;
+        var mid_char;
+        var mess;
+        if (length_num % 2 == 0) {
+            mess = length_num + ', có chẵn số ký tự.';
+            mid_char = text[(text.length/2)-1] + ' và ' + text[(text.length/2)] + ', tại vị trí ' + ((text.length/2)-1) + ' và ' + (text.length/2);
+        } else {
+
+          mess = length_num + ', có lẻ số ký tự';
+          mid_char = text[(text.length-1)/2] + ', tại vị trí ' + ((text.length-1)/2);
+        }
+
+        return [mess, mid_char];
+  
+      }
+
+      function display() {
+        var input_txt = document.getElementById("input_txt").value;
+        var kqua;
+        
+        if (check_palidrome(input_txt)) {
+          kqua = 'Từ nhập vào: ' + check_palidrome(input_txt) + ' là đối xứng';
+
+        } else {
+          kqua = check_palidrome(input_txt) + ', từ nhập vào không đối xứng';
+        }
+
+        var [mess_out, mid_char_out] = get_midchar(input_txt);
+
+        document.getElementById("result").innerHTML = kqua;
+        document.getElementById("result_length").innerHTML = mess_out;
+        document.getElementById("result_mid").innerHTML = mid_char_out;
+
+      }
+
+      function reset_All() {
+        document.getElementById("input_txt").value = '';
+        document.getElementById("result").innerHTML = '';
+        document.getElementById("result_length").innerHTML = '';
+        document.getElementById("result_mid").innerHTML = '';
+
+      }
+
+    </script>
+
+  </head>
+  <body>
+  <form style="width: 500px;">
+    <fieldset>
+     <legend style="text-align: center;">From Kiểm tra</legend> 
+
+    <p>Nhập từ cần kiểm tra <input type="txt" id="input_txt" style="height:25px; font-size: 16px; font-weight: bold; color: red; text-align: center;"></p>
+    <button type="button" onclick="display();" style="color: blue;">Kiểm tra</button>
+    <button type="button" onclick="reset_All();" style="color: red;">Reset All</button>
+
+    <p>Kết quả: <span id="result" style="height:25px; font-size: 16px; font-weight: bold; color: blue; text-align: center;"></span></p>
+    <p>Độ dài của chuỗi là: <span id="result_length" style="height:25px; font-size: 16px; font-weight: bold; color: red; text-align: center;"></span></p>
+    <p>Ký tự giữa của chuỗi là: <span id="result_mid" style="height:25px; font-size: 16px; font-weight: bold; color: red; text-align: center;"></span></p>
+      
+    </fieldset>
+  </form>
+
+  </body>
+</html>
